@@ -8,5 +8,4 @@ class NewsController {
         res.send('fdsadsa');
     }
 }
-
 module.exports = new NewsController();

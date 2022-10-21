@@ -3,9 +3,12 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
+const db = require('./configure/db')
 
 const route = require('./routes/index.js');
 
+//Connect db
+db.connect();
 //HTTP logger
 var morgan = require('morgan');
 //Template Engine
@@ -26,11 +29,11 @@ app.use(express.json());
 
 app.set('view engine', 'hbs'); //use handlesbars
 app.use(morgan('combined')); //use morgan
-app.set('views', path.join(__dirname, 'resources/views')); //set views path
+app.set('views', path.join(__dirname, 'resources','views')); //set views path
 
 //Route Init
 route(app);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}`);
+    console.log(`App listening on port http://localhost:${port}`);
 });
